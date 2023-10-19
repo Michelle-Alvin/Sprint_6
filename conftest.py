@@ -7,6 +7,6 @@ from selenium.webdriver.support import expected_conditions
 @pytest.fixture(scope='function')
 def driver():
     driver = webdriver.Firefox()
-    driver.set_window_size(1200, 800)
+    # driver.set_window_size(1200, 800)
     yield driver
     driver.quit()
