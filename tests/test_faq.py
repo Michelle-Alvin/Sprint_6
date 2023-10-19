@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from locators.base_page_locators import BasePageLocators
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class TestFAQ:
@@ -19,8 +19,9 @@ class TestFAQ:
                                                   ])
     def test_display_accordion(self, driver, question, answer):
         driver.get("https://qa-scooter.praktikum-services.ru/")
-        element = driver.find_element(*question)
+        e = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//img[@alt='Scooter blueprint']")))
+        driver.execute_script("arguments[0].scrollIntoView();", e)
 
-        driver.execute_script("arguments[0].scrollIntoView();", element)
-        element = WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located(question))
+        element = WebDriverWait(driver, 10).until(EC.presence_of_element_located(question))
+        driver.execute_script("arguments[0].scrollIntoView();", driver.find_element(*question))
         element.click()
