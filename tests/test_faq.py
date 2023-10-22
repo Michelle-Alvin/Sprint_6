@@ -1,14 +1,8 @@
 import pytest
-from selenium.webdriver.common.by import By
-
 import test_data
-from pages.base_page import BasePage
 from pages.main_page import MainPage
 from locators.main_page_locators import MainPageLocators
-from locators.base_page_locators import BasePageLocators
-from selenium import webdriver
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+
 
 
 class TestFAQ:
@@ -23,11 +17,11 @@ class TestFAQ:
         [MainPageLocators.COUNTRYSIDE_QUESTION, MainPageLocators.COUNTRYSIDE_ANSWER, test_data.ACCORD_7]
                                                   ])
     def test_display_accordion(self, driver, question, answer, answer_text):
-        main = MainPage(driver, "https://qa-scooter.praktikum-services.ru/")
+        main = MainPage(driver)
         main.open()
-        main.cookie_bar_closer(driver)
-        main.scroll_to(driver, question)
-        main.click(driver, question)
-        text = main.get_text(driver, answer)
+        main.cookie_bar_closer()
+        main.scroll_to(question)
+        main.click(question)
+        text = main.get_text(answer)
 
         assert answer_text == text, f'Ожидаемый текст = {answer_text}, Полученный текст = {text}'
