@@ -1,11 +1,12 @@
 import pytest
 import test_data
+import allure
 from pages.main_page import MainPage
 from locators.main_page_locators import MainPageLocators
 
 
-
 class TestFAQ:
+    @allure.title(f'Проверка блока "Вопросы о важном"')
     @pytest.mark.parametrize("question, answer, answer_text", [
         [MainPageLocators.PRICE_QUESTION, MainPageLocators.PRICE_ANSWER, test_data.ACCORD_0],
         [MainPageLocators.FEW_SCOOTER_QUESTION, MainPageLocators.FEW_SCOOTER_ANSWER, test_data.ACCORD_1],
@@ -15,7 +16,7 @@ class TestFAQ:
         [MainPageLocators.CHARGER_QUESTION, MainPageLocators.CHARGER_ANSWER, test_data.ACCORD_5],
         [MainPageLocators.CANCEL_QUESTION, MainPageLocators.CANCEL_ANSWER, test_data.ACCORD_6],
         [MainPageLocators.COUNTRYSIDE_QUESTION, MainPageLocators.COUNTRYSIDE_ANSWER, test_data.ACCORD_7]
-                                                  ])
+    ])
     def test_display_accordion(self, driver, question, answer, answer_text):
         main = MainPage(driver)
         main.open()
