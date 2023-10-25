@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 
+
 class OrderPageLocators:
     NAME_INPUT = [By.XPATH, "//input[@placeholder='* Имя']"]
 
@@ -32,3 +33,11 @@ class OrderPageLocators:
     ORDER_TITTLE = [By.XPATH, "//div[contains(class='Order_ModalHeader')]"]
 
     ORDER_STATUS = [By.XPATH, "//div[text()='Заказ оформлен']"]
+
+    @classmethod
+    def DIV_TEMPLATE(cls, text):
+        return [By.XPATH, f"//div[contains(text(), '{text}')]"]
+
+    @classmethod
+    def LABEL_TEMPLATE(cls, text):
+        return [By.XPATH, f"//label[contains(text(), '{text}')]"]

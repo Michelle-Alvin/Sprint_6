@@ -7,16 +7,21 @@ import allure
 
 
 class MainPage(BasePage):
-    @allure.step('Скроллим до элемента')
-    def scroll_to(self, locator):
-        element = WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(locator))
-        self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     @allure.step('Закрываем баннер с кукки')
     def cookie_bar_closer(self):
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(BasePageLocators.COOKIE_BANNER)).click()
+        self.click(BasePageLocators.COOKIE_BANNER)
 
     @allure.step('Открываем форму заказа самоката')
     def open_order_form(self, button=MainPageLocators.UPPER_ORDER_BUTTON):
         self.scroll_to(button)
         self.click(button)
+
+    @allure.step('Переходим на главную страницу через "Самокат"')
+    def go_to_main(self):
+        self.click(BasePageLocators.SCOOTER_LOGO)
+
+    @allure.step('Переходим на страницу "Дзен" через лого "Яндекс"')
+    def go_to_dzen(self):
+        self.click(BasePageLocators.YANDEX_LOGO)
+        self.open_new_tab("https://dzen.ru/?yredirect=true")

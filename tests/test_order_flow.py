@@ -5,8 +5,8 @@ from pages.order_page import OrderPage
 from locators.main_page_locators import MainPageLocators
 
 
-class TestOrderFlow():
-    @allure.title(f'Проверка флоу заказа самоката')
+class TestOrderFlow:
+    @allure.title('Проверка флоу заказа самоката')
     @pytest.mark.parametrize("button_order, name, surname, address, metro, phone, date, rent, color, comment", [
         [MainPageLocators.UPPER_ORDER_BUTTON, "Арсений", "Лукин", "ул. Пушкина 77А", "Черкизовская", "89991234567",
          "21.10.2023", "трое суток", "чёрный жемчуг", "жду самокат"],

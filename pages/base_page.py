@@ -28,12 +28,11 @@ class BasePage:
         element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(locator))
         return element.text
 
-    @allure.step('Переходим на главную страницу через "Самокат"')
-    def go_to_main(self):
-        self.click(BasePageLocators.SCOOTER_LOGO)
+    @allure.step('Скроллим до элемента')
+    def scroll_to(self, locator):
+        element = WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(locator))
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
-    @allure.step('Переходим на страницу "Дзен" через лого "Яндекс"')
-    def go_to_dzen(self):
-        self.click(BasePageLocators.YANDEX_LOGO)
+    def open_new_tab(self, url):
         self.driver.switch_to.window(self.driver.window_handles[-1])
-        WebDriverWait(self.driver, 10).until(EC.url_to_be("https://dzen.ru/?yredirect=true"))
+        WebDriverWait(self.driver, 10).until(EC.url_to_be(url))

@@ -6,7 +6,7 @@ from locators.main_page_locators import MainPageLocators
 
 
 class TestFAQ:
-    @allure.title(f'Проверка блока "Вопросы о важном"')
+    @allure.title('Проверка блока "Вопросы о важном"')
     @pytest.mark.parametrize("question, answer, answer_text", [
         [MainPageLocators.PRICE_QUESTION, MainPageLocators.PRICE_ANSWER, test_data.ACCORD_0],
         [MainPageLocators.FEW_SCOOTER_QUESTION, MainPageLocators.FEW_SCOOTER_ANSWER, test_data.ACCORD_1],

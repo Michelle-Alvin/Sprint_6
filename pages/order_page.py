@@ -22,7 +22,7 @@ class OrderPage(BasePage):
     def fill_metro(self, text):
         self.click(OrderPageLocators.METRO_INPUT)
         self.fill_input(OrderPageLocators.METRO_INPUT, text)
-        self.click((By.XPATH, f"//div[text()='{text}']"))
+        self.click(OrderPageLocators.DIV_TEMPLATE(text))
 
     @allure.step('Вводим телефон')
     def fill_phone(self, text):
@@ -40,11 +40,11 @@ class OrderPage(BasePage):
     @allure.step('Вводим срок аренды')
     def fill_rent(self, text):
         self.click(OrderPageLocators.RENT_TIME_INPUT)
-        self.click((By.XPATH, f"//div[text()='{text}']"))
+        self.click((OrderPageLocators.DIV_TEMPLATE(text)))
 
     @allure.step('Выбираем цвет самоката')
     def fill_color(self, text):
-        self.click((By.XPATH, f"//label[contains(text(), '{text}')]"))
+        self.click(OrderPageLocators.LABEL_TEMPLATE(text))
 
     @allure.step('Вводим комментарий')
     def fill_comment(self, text):
